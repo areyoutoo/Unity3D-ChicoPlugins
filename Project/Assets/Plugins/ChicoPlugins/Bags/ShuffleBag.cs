@@ -15,10 +15,18 @@ public class ShuffleBag<T> : RandomBag<T> {
 	
 	public override T GetNext()
 	{
-		if (members.Count < 1) {
+		if (members.Count < 1 && backups.Count > 0) {
 			Refill();
 		}
-		return base.GetNext ();
+		
+		if (members.Count > 0) {
+			int i = Random.Range(0, members.Count);
+			T item = members[i];
+			members.RemoveAt[i];
+			return item;
+		} else {
+			return base.GetNext ();
+		}
 	}
 	
 	public override void Add(T item) {
