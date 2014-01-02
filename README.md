@@ -2,3 +2,89 @@ ChicoPlugins
 ============
 
 Suite of helpful Unity3D code files.
+
+This project is a collection of files and modules that I've found useful for multiple projects.
+
+
+Bags module
+----
+
+Helper classes to manage the storage and randomized retrieval of values. [Managed randomness](http://gamedevelopment.tutsplus.com/tutorials/shuffle-bags-making-random-feel-more-random--gamedev-1249) sometimes [feels more authentic](http://seanmonstar.com/post/708989796/a-less-random-generator) for gameplay.
+
+All bags provide a common `GetNext()` call. Most of them provide a simple `Add(T)` call, or can be populated during construction by passing any IEnumerable reference.
+
+<dl>
+<dt>ShuffleBag</dt>
+<dd>Pick items with uniform randomness, removes items when picked, attempts to refill itself when empty.</dd>
+
+<dt>RandomBag</dt>
+<dd>Pick items with uniform randomness, removes items when picked, does NOT refill itself.</dd>
+
+<dt>WeightedBag</dt>
+<dd>Pick items with weighted randomness, does NOT remove them when picked.</dd>
+</dl>
+
+
+ComponentPools module
+----
+
+Instantiate() and Destroy() can be expensive calls; it is often more performant to recycle GameObjects using an [object pool](http://answers.unity3d.com/questions/196413/gameobject-pool-to-avoid-performance-issues-in-ins.html) pattern.
+
+Our pools focus on components and the scene hierarchy. With a scene hierarchy like this:
+
+    Pool (has ParticlePool named "Explosion")
+        Pooled object (has ParticleSystem)
+        Pooled object (has ParticleSystem)
+
+It's easy to find and recycle those particles:
+
+    PoolManager.Get<ParticlePool>("Explosion").GetNextAt(Vector3.zero);
+
+* The pool will move a particle system to the requested location.
+* By default, the particles will play immediately.
+* By default, new particle systems will be spawned when the pool is empty.
+* Finished particles will be reclaimed automatically.
+
+Pool structure is managed at runtime, using the scene hierarchy.
+
+<dl>
+<dt>PoolManager</dt>
+<dd>Static class to easily find and use pools.</dd>
+
+<dt>ParticlePool</dt>
+<dd>Pool to manage ParticleSystem components.</dd>
+
+<dt>TransformPool</dt>
+<dd>Every GameObject has a transform, making this pool extremely versatile.</dd>
+</dl>
+
+It's easy to manage other components, including your own custom components, by creating a new class inheriting from `ComponentPool<T>`.
+
+
+Extensions module
+----
+
+This module provides a few [extension methods](http://www.third-helix.com/2013/09/adding-to-unitys-built-in-classes-using-extension-methods/) to make your life easier.
+
+Highlights include:
+
+<dl>
+<dt>GameObject</dt>
+<dd>GetOrAddComponent(), DestroyComponent(), InstantiateChild(), ForAllComponents(), GetRendererBounds(), GetColliderBounds(), SetLayerRecursively()</dd>
+
+<dt>Vector2</dt>
+<dd>WithX(), WithY(), ToVector3()</dd>
+
+<dt>Vector3</dt>
+<dd>WithX(), WithY(), WithZ(), WithScale(), WithLength(), ToVector2()</dd>
+
+<dt>Transform</dt>
+<dd>AttachChildren(), MultiplyScale(), ClearLocalPosition(), GetChildren()</dd>
+
+<dt>Boundsx (static methods)</dt>
+<dd>EncapsulateAll()</dd>
+
+<dt>Randomx (static methods)</dt>
+<dd>InBounds(), OnLine(), AbsRange(), CoinToss()</dd>
+
+</dl>
