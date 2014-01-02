@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+///<summary>
+///Weighted reference to some object. Mainly used by WeightedBag class.
+///</summary>
 public class WeightedLink<T> {
 	public readonly T target;
 	public readonly float weight;

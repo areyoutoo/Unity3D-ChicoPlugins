@@ -13,6 +13,9 @@ public class RandomBag<T> : SimpleBag<T> {
 		}
 	}
 
+	///<summary>
+	///Returns a random item. Returns default(T) if empty.
+	///</summary>	
 	public override T GetNext() {
 		if (members.Count > 0) {
 			int i = Random.Range(0, members.Count);
@@ -37,14 +40,23 @@ public class RandomBag<T> : SimpleBag<T> {
 		members = new List<T>();
 	}
 
+	///<summary>
+	///Memory optimization: request initial capacity.
+	///<summary>	
 	public RandomBag(int capacity) {
 		members = new List<T>(capacity);
 	}
 
+	///<summary>
+	///Add all items to the new bag.
+	///<summary> 		
 	public RandomBag(IEnumerable<T> items) : this() {
 		AddRange(items);
 	}
 	
+	///<summary>
+	///Add all items to the new bag.
+	///<summary> 	
 	public RandomBag(params T[] items) : this(items) {
 	}
 }

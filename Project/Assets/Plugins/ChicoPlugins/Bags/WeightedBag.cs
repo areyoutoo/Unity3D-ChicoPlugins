@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 /// <summary>
-/// Bag returns item with weighted randomness.
+/// Bag returns item with weighted randomness. Items are NOT removed.
 /// </summary>
 public class WeightedBag<T> : AbstractBag<T> {
 	const float DEFAULT_WEIGHT = 1f;
@@ -35,10 +35,19 @@ public class WeightedBag<T> : AbstractBag<T> {
 		}
 	}
 	
+	///<summary>
+	///Adds item with requested weight.
+	///<summary> 
+	///<remarks>
+	///Weights are NOT normalized. Recommend against particularly large (>1,000,000) or small (<0.001) weights.
+	///</remarks>
 	public void Add(T item, float weight) {
 		Add(new WeightedLink<T>(item, weight));
 	}
 	
+	///<summary>
+	///Implementation for Add().
+	///<summary> 		
 	public virtual void Add(WeightedLink<T> link) {
 		if (link == null) throw new System.ArgumentNullException("link");
 		
