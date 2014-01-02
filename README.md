@@ -14,14 +14,14 @@ Helper classes to manage the storage and randomized retrieval of values. [Manage
 All bags provide a common `GetNext()` call. Most of them provide a simple `Add(T)` call, or can be populated during construction by passing any IEnumerable reference.
 
 <dl>
-<dt>ShuffleBag</dt>
-<dd>Pick items with uniform randomness, removes items when picked, attempts to refill itself when empty.</dd>
-
 <dt>RandomBag</dt>
-<dd>Pick items with uniform randomness, removes items when picked, does NOT refill itself.</dd>
+<dd>Pick items with uniform randomness.</dd>
+
+<dt>ShuffleBag</dt>
+<dd>Pick items with uniform randomness; avoids repeating items until the bag has been completely used (and automatically refilled).</dd>
 
 <dt>WeightedBag</dt>
-<dd>Pick items with weighted randomness, does NOT remove them when picked.</dd>
+<dd>Pick items with weighted randomness.</dd>
 </dl>
 
 
