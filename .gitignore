@@ -10,3 +10,6 @@
 
 # Unity preferences file
 *.userprefs
+
+# Ignore project settings folder (for now)
+Project/ProjectSettings
