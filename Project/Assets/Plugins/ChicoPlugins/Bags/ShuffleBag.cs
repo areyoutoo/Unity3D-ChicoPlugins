@@ -32,7 +32,7 @@ public class ShuffleBag<T> : RandomBag<T> {
 		if (members.Count > 0) {
 			int i = Random.Range(0, members.Count);
 			T item = members[i];
-			members.RemoveAt[i];
+			members.RemoveAt(i);
 			return item;
 		} else {
 			return base.GetNext ();
