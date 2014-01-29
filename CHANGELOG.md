@@ -4,6 +4,7 @@ Changelog for ChicoPlugins
 v0.2 (Not Released)
 ----
 
+* License: ChicoPlugins is now available under the MIT license.
 * New: "TweenCam" module, a simple camera (specify location, view target).
 * New: "Loading" module, better transitions for loading levels.
 * New: "UI" module, work-in-progress toward a bare-bones UI library.
