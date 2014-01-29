@@ -1,6 +1,14 @@
 Changelog for ChicoPlugins
 ====
 
+v0.2 (Not Released)
+----
+
+* New: "TweenCam" module, a simple camera (specify location, view target).
+* New: "Loading" module, better transitions for loading levels.
+* New: "UI" module, work-in-progress toward a bare-bones UI library.
+
+
 v0.1.1 (January 4, 2014)
 ----
 
