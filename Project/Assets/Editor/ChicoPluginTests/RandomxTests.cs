@@ -54,10 +54,17 @@ public class RandomxTests {
 				const int numSamples = 4;
 				for (int i=0; i<numSamples; i++) {
 					Vector3 v = Randomx.OnLine(p1, p2);
-					Vector3 dirToV = (v - p1).normalized;
-					Vector3 dirToP2 = (p2 - p1).normalized;
+					
+					Vector3 dirP1toV = (v - p1).normalized;
+					Vector3 dirP1toP2 = (p2 - p1).normalized;
+					
+					Vector3 dirP2toV = (v - p2).normalized;
+					Vector3 dirP2toP1 = (p1 - p2).normalized;
+					
 					numTests += 1;
-					numOnLine += dirToV == dirToP2 ? 1 : 0;
+					if (dirP1toV == dirP1toP2 || dirP2toV == dirP2toP1) { //if V is very close to p1 or p2, this gets funny, so compare from both sides
+						numOnLine += 1;
+					}
 				}
 			}
 		}
