@@ -2,22 +2,22 @@ using UnityEngine;
 using System.Collections;
 
 public class LevelLoader : MonoBehaviour {
-    public static void Load(string name) {
+    public static void Load(string target, string transition="Loading") {
         GameObject go = new GameObject("LevelLoader");
         LevelLoader instance = go.AddComponent<LevelLoader>();
-        instance.StartCoroutine(instance.InnerLoad(name));
+        instance.StartCoroutine(instance.InnerLoad(target));
     }
  
-    IEnumerator InnerLoad(string name) {
+    IEnumerator InnerLoad(string target, string transition) {
         //load transition scene
         Object.DontDestroyOnLoad(this.gameObject);
-        Application.LoadLevel("Loading");
+        Application.LoadLevel(transition);
  
         //wait one frame (for rendering, etc.)
         yield return null;
  
         //load the target scene
-        Application.LoadLevel(name);
+        Application.LoadLevel(target);
         Destroy(this.gameObject);
     }
 }
