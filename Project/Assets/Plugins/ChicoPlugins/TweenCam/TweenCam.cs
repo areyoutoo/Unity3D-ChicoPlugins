@@ -130,8 +130,7 @@ public class TweenCam : MonoBehaviour {
     protected void Start() {
         tween = new TweenState(0f);
         lastState = new CamState(transform.position, transform.position + transform.forward, GetFOV());
-        stateFunc = GetStateDefault;
-        lastStateFunc = stateFunc;
+        lastStateFunc = stateFunc = GetStateDefault;
         OnStart();
     }
     
@@ -167,6 +166,7 @@ public class TweenCam : MonoBehaviour {
     /// <remarks>
     /// Useful to override in case you want last-minute edits, such as clamping.
     /// </remarks>
+    /// <param name="state">Target state, post-tween.</param>
     protected virtual void SetState(CamState state) {
         transform.position = state.pos;
         transform.LookAt(state.target);

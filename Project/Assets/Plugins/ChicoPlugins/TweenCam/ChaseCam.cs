@@ -26,7 +26,7 @@ public class ChaseCam : TweenCam {
         //without target, find one!
         //   - parent (preferred)
         //   - self (fallback)
-        if (target == null && transform.parent != null) {
+        if (target == null) {
             if (transform.parent != null) {
                 target = transform.parent;
             } else {
