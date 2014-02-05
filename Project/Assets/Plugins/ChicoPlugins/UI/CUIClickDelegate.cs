@@ -1,5 +1,9 @@
 using UnityEngine;
+using System.Collections;
 
+/// <summary>
+/// Pass clicks to other objects via delegates.
+/// </summary>
 public class CUIClickDelegate : CUIClickable {
     public System.Action OnMouseDown;
     public System.Action OnMouseUp;
