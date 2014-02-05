@@ -1,5 +1,11 @@
 using UnityEngine;
 
+/// <summary>
+/// Simplest possible UI for a transition level.
+/// </summary>
+/// <remarks>
+/// Recommended for use as a placeholder with LevelLoader.
+/// </remarks>
 public class SimpleLoadUI : MonoBehaviour {
     public Color backgroundColor = Color.black;
     public Color textColor = Color.blue;
