@@ -45,7 +45,7 @@ public static class Randomx {
 	}
 	
 	/// <summary>
-	/// Returns true some of the time.
+	/// Returns true X% of the time.
 	/// </summary>
 	/// <param name='truePerc'>
 	/// How often to return true? 0 is never, 1 is 100%.

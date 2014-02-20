@@ -1,6 +1,17 @@
 Changelog for ChicoPlugins
 ====
 
+v0.2 (February 20, 2014)
+----
+
+* License: ChicoPlugins is now available under the MIT license.
+* New: "TweenCam" module, a simple camera (specify location, view target).
+* New: "Loading" module, better transitions for loading levels.
+* New: "UI" module, work-in-progress toward a bare-bones UI library.
+* New: "Audio" module, work-in-progress toward music control scripts.
+* Fixed: Randomx.OnLine test was erroring out intermittently.
+
+
 v0.1.1 (January 4, 2014)
 ----
 

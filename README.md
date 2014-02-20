@@ -6,6 +6,25 @@ Suite of helpful Unity3D code files.
 This project is a collection of files and modules that I've found useful for multiple projects.
 
 
+Installation
+----
+
+Many files, functions, or modules may be useful individually. Those, you can download or copy directly.
+
+To deploy the plugins in your project:
+
+* Clone the repo to your machine
+* Copy the contents of `Project/Assets/Plugins` into your project's `Assets/Plugins` folder
+* Future releases may include .unitypackage archives to make this simpler
+
+To get a full development build:
+
+* Clone the repo to your machine
+* The `Project` folder contains everything you need to create a Unity project
+* In Unity: `File` > `New Project` > `Browse...` > Select the cloned "Project" folder
+* Unity will automatically create metadata files (asset database, project settings, solutions, etc.)
+
+
 Bags module
 ----
 
@@ -59,6 +78,26 @@ Pool structure is managed at runtime, using the scene hierarchy.
 </dl>
 
 It's easy to manage other components, including your own custom components, by creating a new class inheriting from `ComponentPool<T>`.
+
+
+Loading module
+----
+
+Simple loading screen support, similar to [this blog post](http://chicounity3d.wordpress.com/2014/01/25/loading-screen-tutorial/).
+
+
+TweenCam module
+----
+
+TweenCam tracks its state with two points in space: where is the camera, and what is it looking at? You can provide your own functions to provide that state, once per frame, and cleanly tween between output from two such functions.
+
+For advanced use, TweenCam also allows you to control the camera's FOV/size and "up" direction.
+
+
+UI module
+----
+
+This is a work-in-progress module, an attempt to create a bare-bones UI system.
 
 
 Extensions module
