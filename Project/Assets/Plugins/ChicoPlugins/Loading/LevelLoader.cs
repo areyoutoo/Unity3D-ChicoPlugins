@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 /// <summary>
@@ -14,6 +14,12 @@ public class LevelLoader : MonoBehaviour {
     /// <param name="target">Name of destination level.</param>
     /// <param name="transition">Optional name of transition level. Defaults to "Loading".</param>
     public static void Load(string target, string transition="Loading") {
+		if (target == null) throw new System.ArgumentNullException("target");
+		if (transition == null) throw new System.ArgumentNullException("transition");
+		
+		if (target.Trim() == string.Empty) throw new System.ArgumentException("Target cannot be empty!", "target");
+		if (transition.Trim() == string.Empty) throw new System.ArgumentException("Transition cannot be empty!", "transition");
+		
         GameObject go = new GameObject("LevelLoader");
         LevelLoader instance = go.AddComponent<LevelLoader>();
         instance.StartCoroutine(instance.InnerLoad(target, transition));
