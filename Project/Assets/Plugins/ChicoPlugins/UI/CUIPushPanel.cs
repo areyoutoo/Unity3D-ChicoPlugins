@@ -6,7 +6,6 @@ using System.Collections;
 /// </summary>
 public class CUIPushPanel : CUIGotoPanel {
     protected override void GotoPanel(CUIPanelCam cam, string target) {
-		Debug.Log("push: " + panelName);
-        cam.PushPanel(panelName);
+		cam.PushPanel(target);
     }
 }

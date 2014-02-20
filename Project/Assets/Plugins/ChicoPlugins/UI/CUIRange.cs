@@ -14,11 +14,6 @@ public abstract class CUIRange<T> : CUIValue<T> {
     /// Button to call UpClick.
     /// </summary>    
 	public CUIClickDelegate upButton;
-    
-    /// <summary>
-    /// Widget to show the current value.
-    /// </summary>    
-    public CUIText textWidget;
 	
     /// <summary>
     /// Range should disallow values below this (inspector).
@@ -50,9 +45,6 @@ public abstract class CUIRange<T> : CUIValue<T> {
 	
     protected override T OnSetValue(T newValue) {
         newValue = ClampValue(newValue, min, max);
-        if (textWidget != null) {
-            textWidget.SetValue(GetString(newValue));
-        }
         return newValue;
     }
     
@@ -60,13 +52,6 @@ public abstract class CUIRange<T> : CUIValue<T> {
     /// Override to provide type-specific clamp function.
     /// </summary>    
     protected abstract T ClampValue(T newValue, T min, T max);
-    
-    /// <summary>
-    /// Override to provide type-specific ToString function.
-    /// </summary>    
-    protected virtual string GetString(T newValue) {
-        return newValue.ToString();
-    }
 	
     /// <summary>
     /// Called when "up" button is pressed.

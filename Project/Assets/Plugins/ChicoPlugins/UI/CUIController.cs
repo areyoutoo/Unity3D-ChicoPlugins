@@ -187,7 +187,7 @@ public class CUIController : MonoBehaviour {
     /// </summary>
     /// <returns>Screen position for GetMouseRay (be careful to assign a z-component).</returns>
     protected virtual Vector3 GetMousePosition() {
-        Vector3 mp = Input.mousePosition.WithZ(1f);
+        Vector3 mp = Input.mousePosition.WithZ(0.1f);
         
         #if !UNITY_STANDALONE
             #if UNITY_EDITOR
@@ -270,9 +270,8 @@ public class CUIController : MonoBehaviour {
             OnMouseUp();
         }
         
-        if (mousePos != lastMousePos) {
-            OnMouseMove();
-        }
+		//always assume mouse has moved -- because the camera itself might have
+        OnMouseMove();
         
         if (mouseDown) {
             OnMouseHold();

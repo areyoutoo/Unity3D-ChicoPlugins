@@ -16,9 +16,14 @@ public abstract class CUIValue<T> : CUIClickable {
     /// Widget's current value (read-only).
     /// </summary>
     public T current { get; private set; }
+	
+    /// <summary>
+    /// Widget to show the current value.
+    /// </summary>    
+    public CUIText textWidget;	
     
     protected void Start() {
-        SetValue(defaultValue, false);
+        SetValue(GetDefaultValue(), false);
         OnStart();
     }
     
@@ -29,6 +34,9 @@ public abstract class CUIValue<T> : CUIClickable {
     /// <param name="fireOnChange">Call the onChange delegate?</param>
     public void SetValue(T newValue, bool fireOnChange=true) {
         current = OnSetValue(newValue);
+        if (textWidget != null) {
+            textWidget.message = GetString(newValue);
+		}
         if (fireOnChange && onChange != null) {
             onChange(current);
         }
@@ -42,6 +50,13 @@ public abstract class CUIValue<T> : CUIClickable {
     protected virtual T OnSetValue(T newValue) {
         return newValue;
     }
+	
+    /// <summary>
+    /// Override to provide type-specific ToString function.
+    /// </summary>    
+    protected virtual string GetString(T newValue) {
+        return newValue.ToString();
+    }	
     
     /// <summary>
     /// Called at the end of Start().
@@ -52,4 +67,11 @@ public abstract class CUIValue<T> : CUIClickable {
     /// Called when the component is attached; override to set default values.
     /// </summary>    
     protected virtual void Reset() {}
+	
+	/// <summary>
+	/// Optional override. Called during Start() to populate our default value.
+	/// </summary>
+	protected virtual T GetDefaultValue() {
+		return defaultValue;
+	}
 }

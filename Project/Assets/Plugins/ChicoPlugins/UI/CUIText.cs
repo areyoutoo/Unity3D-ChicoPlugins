@@ -4,16 +4,34 @@ using System.Collections;
 /// <summary>
 /// UI widget for text. Extend for specific text classes (ie: TextMesh).
 /// </summary>
-public abstract class CUIText : CUIValue<string> {
-	string lastValue;
-    
-    protected override string OnSetValue(string newValue) {
-        if (newValue != lastValue) {
-			lastValue = newValue;
-            ApplyText(newValue);
-        }
-        return newValue;
-    }
+public abstract class CUIText : MonoBehaviour {
+	string lastMessage;
+	Color lastColor;
 	
-	protected abstract void ApplyText(string newText);
+	public string message {
+		get {
+			return lastMessage;
+		}
+		set {
+			if (value != lastMessage) {
+				lastMessage = value;
+				ApplyMessage(value);
+			}
+		}
+	}
+	
+	public Color color {
+		get {
+			return lastColor;
+		}
+		set {
+			if (value != lastColor) {
+				lastColor = value;
+				ApplyColor(value);
+			}
+		}
+	}
+    
+	protected abstract void ApplyMessage(string newMessage);
+	protected abstract void ApplyColor(Color newColor);
 }

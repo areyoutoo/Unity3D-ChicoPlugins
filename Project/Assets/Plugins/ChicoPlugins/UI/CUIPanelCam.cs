@@ -42,7 +42,20 @@ using System.Collections.Generic;
 public class CUIPanelCam : ChaseCam {
 	Dictionary<string, CUIPanel> panels = new Dictionary<string, CUIPanel>();
     
-    List<CUIPanel> backPanels = new List<CUIPanel>();
+    List<CUIPanel> backPanels = new List<CUIPanel>(); //mostly like a stack, but we need to iterate sometimes
+	
+	static HashSet<CUIPanelCam> _panelCams = new HashSet<CUIPanelCam>();
+	
+	/// <summary>
+	/// Enumerator for all CUIPanelCams currently active.
+	/// </summary>
+	public static CUIPanelCam[] panelCams {
+		get {
+			CUIPanelCam[] cams = new CUIPanelCam[_panelCams.Count];
+			_panelCams.CopyTo(cams);
+			return cams;
+		}
+	}
     
     /// <summary>
     /// At start, snap to this panel (inspector).
@@ -64,11 +77,21 @@ public class CUIPanelCam : ChaseCam {
     /// </summary>
     public System.Action onLastBack;
 	
+	public float switchTime = 0.25f;
+	
+	public CUIPanel currentPanel { get; protected set; }
+	
+	protected override void OnAwake() {
+		base.OnAwake();
+		_panelCams.Add(this);
+	}
+	
 	protected override void OnStart() {
 		base.OnStart();
 		RegisterPanels(target);
         
         if (panels.ContainsKey(defaultPanel)) {
+			currentPanel = panels[defaultPanel];
             SnapTarget(panels[defaultPanel].transform);
         }
 	}
@@ -111,7 +134,8 @@ public class CUIPanelCam : ChaseCam {
 	public void SwitchPanel(string panelName) {
         CUIPanel p;
 		if (panels.TryGetValue(panelName, out p)) {
-			SwitchTarget(p.transform);
+			currentPanel = p;
+			SwitchTarget(p.transform, switchTime);
 		} else {
 			Debug.LogWarning("CUIPanelCam has no panel named '"+panelName+"'", this);
 		}
@@ -123,8 +147,9 @@ public class CUIPanelCam : ChaseCam {
     public void PushPanel(string panelName) {
         CUIPanel p;
         if (panels.TryGetValue(panelName, out p)) {
-            SwitchTarget(p.transform);
-            backPanels.Add(p);
+			backPanels.Add(currentPanel);
+			currentPanel = p;
+            SwitchTarget(p.transform, switchTime);
         } else {
 			Debug.LogWarning("CUIPanelCam has no panel named '"+panelName+"'", this);
 		}
@@ -142,8 +167,11 @@ public class CUIPanelCam : ChaseCam {
         if (index >= 0) {
             CUIPanel p = backPanels[index];
             backPanels.RemoveAt(index);
-            SwitchTarget(p.transform);
+			currentPanel = p;
+            SwitchTarget(p.transform, switchTime);
+			Debug.Log("Back to " + p);
         } else {
+			Debug.Log("LastBack"); //TODO
             if (onLastBack != null) {
                 onLastBack();
             }
@@ -173,7 +201,12 @@ public class CUIPanelCam : ChaseCam {
     protected override void OnUpdate() {
         base.OnUpdate();
         if (handleBackButton && Input.GetKeyDown(KeyCode.Escape)) {
+			Debug.Log("Popping panel"); //TODO
             PopPanel();
         }
     }
+	
+	protected void OnDestroy() {
+		_panelCams.Remove(this);
+	}
 }
