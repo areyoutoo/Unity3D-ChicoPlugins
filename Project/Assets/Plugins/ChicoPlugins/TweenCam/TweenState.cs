@@ -27,10 +27,10 @@ public struct TweenState {
     }
     
     /// <summary>
-    /// Call once per frame. Advance timer by delta seconds (usually Time.deltaTime).
+    /// Call once per frame. Advance timer by delta seconds (usually Time.deltaTime). True if timer is still going.
     /// </summary>
     /// <returns>
-    /// True if timer has finished.
+    /// True if timer is still active.
     /// </returns>
     public bool Tick(float delta) {
         secondsLeft -= delta;

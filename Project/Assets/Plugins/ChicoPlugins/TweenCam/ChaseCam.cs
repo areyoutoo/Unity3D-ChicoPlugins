@@ -41,13 +41,14 @@ public class ChaseCam : TweenCam {
     protected override void SetState(CamState state) {
         Vector3 offset;
         if (tween.Tick(GetDeltaTime())) {
-            offset = Vector3.Lerp(lastTarget.position, target.position, tween.perc);
+			Vector3 diff = lastTarget.position - target.position;
+            offset = diff * (1f - tween.perc);
         } else {
-            offset = target.position;
+            offset = Vector3.zero;
         }
         
         if (applyChaseOffset) {
-            state.pos += offset;
+            state.pos += offset; //FIXME: there's a bug somewhere in here about lerping between two targets
             state.target += offset;
         }
         base.SetState(state);
@@ -59,7 +60,9 @@ public class ChaseCam : TweenCam {
     /// <param name="newTarget">Transform to chase.</param>
     /// <param name="duration">Tween duration.</param>
     public void SwitchTarget(Transform newTarget, float duration=1f) {
-        SnapTarget(newTarget);
+		OnSwitchTarget();
+        lastTarget = target;
+		target = newTarget;
         tween.Reset(duration);
     }
     
@@ -68,8 +71,14 @@ public class ChaseCam : TweenCam {
     /// </summary>
     /// <param name="newTarget">Transform to chase.</param>    
     public void SnapTarget(Transform newTarget) {
+		OnSnapTarget();
         lastTarget = target;
         target = newTarget;
         tween.Stop();
     }
+	
+	protected virtual void OnSwitchTarget() {}
+	protected virtual void OnSnapTarget() {}
+	
+	
 }

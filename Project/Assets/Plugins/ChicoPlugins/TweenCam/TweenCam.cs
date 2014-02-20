@@ -89,17 +89,26 @@ public class TweenCam : MonoBehaviour {
         /// What is the camera looking at?
         /// </summary>   
         public Vector3 target;
+		
+		/// <summary>
+		/// Hint vector used for Transform.LookAt().
+		/// </summary>
+		public Vector3 up;
         
         /// <summary>
         /// Camera's FOV (or ortho size).
         /// </summary> 
         public float fov;
         
-        public CamState(Vector3 pos, Vector3 target, float fov) {
-            this.pos = pos;
-            this.target = target;
-            this.fov = fov;
+        public CamState(Vector3 pos, Vector3 target, float fov) : this(pos, target, fov, Vector3.up) {
         }
+		
+		public CamState(Vector3 pos, Vector3 target, float fov, Vector3 up) {
+			this.pos = pos;
+			this.target = target;
+			this.fov = fov;
+			this.up = up;
+		}
     }
     
     /// <summary>
@@ -169,7 +178,7 @@ public class TweenCam : MonoBehaviour {
     /// <param name="state">Target state, post-tween.</param>
     protected virtual void SetState(CamState state) {
         transform.position = state.pos;
-        transform.LookAt(state.target);
+        transform.LookAt(state.target, state.up);
         SetFOV(state.fov);
     }
     
