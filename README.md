@@ -80,6 +80,26 @@ Pool structure is managed at runtime, using the scene hierarchy.
 It's easy to manage other components, including your own custom components, by creating a new class inheriting from `ComponentPool<T>`.
 
 
+Loading module
+----
+
+Simple loading screen support, similar to [this blog post](http://chicounity3d.wordpress.com/2014/01/25/loading-screen-tutorial/).
+
+
+TweenCam module
+----
+
+TweenCam tracks its state with two points in space: where is the camera, and what is it looking at? You can provide your own functions to provide that state, once per frame, and cleanly tween between output from two such functions.
+
+For advanced use, TweenCam also allows you to control the camera's FOV/size and "up" direction.
+
+
+UI module
+----
+
+This is a work-in-progress module, an attempt to create a bare-bones UI system.
+
+
 Extensions module
 ----
 
