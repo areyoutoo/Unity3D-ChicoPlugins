@@ -1,7 +1,7 @@
 Changelog for ChicoPlugins
 ====
 
-v0.2 (Not Released)
+v0.2 (February 20, 2014)
 ----
 
 * License: ChicoPlugins is now available under the MIT license.
