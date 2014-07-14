@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("ChicoPlugins/Music/Player")]
 public class MusicPlayer : MonoBehaviour {
 	public AudioSource music;
 	
@@ -28,7 +29,8 @@ public class MusicPlayer : MonoBehaviour {
 				return;
 			}
 		}
-		
+
+		baseVolume = music.volume;
 		ConfigureSource(music);
 		
 		float configMulti = GetConfigVolumeMulti();
@@ -53,8 +55,7 @@ public class MusicPlayer : MonoBehaviour {
 	/// Desired music volume; will be modified according to baseVolume.
 	/// </param>
 	public void SetVolumeMulti(float volume) {
-		volume /= baseVolume;
-		ApplyVolumeMulti(volume);
+		ApplyVolumeMulti(volume * baseVolume);
 	}
 	
 	/// <summary>
@@ -95,6 +96,8 @@ public class MusicPlayer : MonoBehaviour {
 	/// Configure an AudioSource for use with music. Maybe also useful for UI?
 	/// </summary>
 	public static void ConfigureSource(AudioSource source) {
+		if (source == null) return;
+		
 		source.ignoreListenerPause = true;
 		source.ignoreListenerVolume = true;
 		source.bypassEffects = true;
