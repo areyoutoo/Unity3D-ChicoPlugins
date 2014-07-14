@@ -1,6 +1,22 @@
 Changelog for ChicoPlugins
 ====
 
+v0.3 (Not Released)
+----
+
+* New: ComponentPools now provide static functions TryGetNext, TryGetNextAt, TryAdd (my favorite new feature).
+* New: AudioPool (a ComponentPool for AudioSource components).
+* New: AddComponentMenu entries for ChicoPlugins components.
+* New: Vector3 extension methods WithScaleX, WithScaleY, WithScaleZ, WithClampX, WithClampY, WithClampZ.
+* New: CUITextWidget (similar to CUITextButton, minus actually being a button).
+* New: CUIText adds GetMessage, GetColor methods.
+* Changed: ComponentPool settings are now serialized via simple public fields.
+* Changed: TweenCam replaces LerpState with separate InterpParam, InterpState methods.
+* Changed: CUIController now caches "last frame" values in LateUpdate(), so that they're easier to use from other scripts.
+* Fixed: MusicPlayer now correctly handles music sources with base volume lower than 1.
+* Fixed: CUIController on mobile was reporting last-touched position when no touch present (due to change in Unity API).
+
+
 v0.2 (February 20, 2014)
 ----
 
