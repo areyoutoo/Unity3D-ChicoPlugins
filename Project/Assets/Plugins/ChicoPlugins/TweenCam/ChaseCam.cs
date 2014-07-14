@@ -4,6 +4,7 @@ using UnityEngine;
 /// TweenCam that follows a target Transform.
 /// </summary>
 [RequireComponent(typeof(Camera))]
+[AddComponentMenu("ChicoPlugins/TweenCam/ChaseCam")]
 public class ChaseCam : TweenCam {
     /// <summary>
     /// Which Transform do we chase?
