@@ -4,6 +4,7 @@ using System.Collections;
 /// <summary>
 /// Pass clicks to other objects via delegates.
 /// </summary>
+[AddComponentMenu("ChicoPlugins/UI/Clickable/Delegate")]
 public class CUIClickDelegate : CUIClickable {
     public System.Action OnMouseDown;
     public System.Action OnMouseUp;

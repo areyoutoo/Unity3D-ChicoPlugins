@@ -4,6 +4,7 @@ using System.Collections.Generic;
 /// <summary>
 /// Button. When clicked, tells CUIPanelCam to switch panels WITHOUT a push.
 /// </summary>
+[AddComponentMenu("ChicoPlugins/UI/Clickable/Goto Panel")]
 public class CUIGotoPanel : CUIClickable {
 	public string panelName;
 	

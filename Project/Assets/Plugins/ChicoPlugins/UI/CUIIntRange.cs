@@ -4,6 +4,7 @@ using System.Collections;
 /// <summary>
 /// Two buttons allowing user to pick an int.
 /// </summary>
+[AddComponentMenu("ChicoPlugins/UI/Range/Int")]
 public class CUIIntRange : CUIRange<int> {	
     protected override int ClampValue(int newValue, int min, int max) {
         return Mathf.Clamp(newValue, min, max);

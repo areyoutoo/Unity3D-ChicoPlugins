@@ -4,6 +4,7 @@ using System.Collections;
 /// <summary>
 /// Button allows user to toggle a bool.
 /// </summary>
+[AddComponentMenu("ChicoPlugins/UI/Toggle")]
 public class CUIToggle : CUIValue<bool> {
 	public GameObject enabledWidget;
 	public GameObject disabledWidget;

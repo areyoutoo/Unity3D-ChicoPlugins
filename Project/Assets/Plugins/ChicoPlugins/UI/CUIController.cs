@@ -76,6 +76,7 @@ using System.Collections.Generic;
 ///
 /// </remarks>
 [RequireComponent(typeof(Camera))]
+[AddComponentMenu("ChicoPlugins/UI/Controller")]
 public class CUIController : MonoBehaviour {
     /// <summary>
     /// Cached camera reference (read-only).
@@ -167,19 +168,24 @@ public class CUIController : MonoBehaviour {
     protected void Update() {
         UpdateFrameValues();        
         OnUpdate();
-        CacheLastFrameValues();
     }
+	
+	protected void LateUpdate() {
+		CacheLastFrameValues();
+	}
     
     /// <summary>
     /// Override for custom click detection.
     /// </summary>
     /// <returns>True if clicking during this frame.</returns>
     protected virtual bool GetMouseDown() {
-        #if UNITY_STANDALONE || UNITY_EDITOR
-        return Input.GetMouseButton(0);
-        #else
-        return Input.touchCount > 0;
-        #endif
+		#if (UNITY_ANDROID || UNITY_IPHONE) && !UNITY_EDITOR
+		return Input.touchCount > 0;
+
+		#else
+		return Input.GetMouseButton(0);
+		
+		#endif
     }
     
     /// <summary>
@@ -189,13 +195,11 @@ public class CUIController : MonoBehaviour {
     protected virtual Vector3 GetMousePosition() {
         Vector3 mp = Input.mousePosition.WithZ(0.1f);
         
-        #if !UNITY_STANDALONE
-            #if UNITY_EDITOR
-                if (!Input.GetMouseButton(0)) { mp = Vector3.zero; }
-            #else
-                if (Input.touchCount < 1) { mp = Vector3.zero; }
-            #endif
-        #endif
+        #if UNITY_ANDROID || UNITY_IPHONE
+		if (!mouseDown) { 
+			mp = Vector3.zero; 
+		}
+		#endif
         
         return mp;
     }
@@ -215,7 +219,7 @@ public class CUIController : MonoBehaviour {
     protected virtual GameObject GetMouseTarget() {
         GameObject target = null;
         RaycastHit hit;
-        if (Physics.Raycast(mouseRay, out hit, 100000f, uiLayerMask)) {
+        if (mousePos != Vector3.zero && Physics.Raycast(mouseRay, out hit, 100000f, uiLayerMask)) {
             target = hit.collider.gameObject;
         }
         return target;
@@ -328,6 +332,7 @@ public class CUIController : MonoBehaviour {
     /// Alias for SendMessage.
     /// </summary>    
     protected void Send(GameObject target, string message) {
+		//Debug.Log(string.Format("{0} ({1})", message, target.name), target);
         target.SendMessage(message, SendMessageOptions.DontRequireReceiver);
     }
     

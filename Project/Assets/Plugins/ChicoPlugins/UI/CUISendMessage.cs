@@ -4,6 +4,7 @@ using System.Collections;
 /// <summary>
 /// Pass clicks to other GameObjects via SendMessage.
 /// </summary>
+[AddComponentMenu("ChicoPlugins/UI/Clickable/SendMessage")]
 public class CUISendMessage : CUIClickable {
 	public GameObject target;
 	

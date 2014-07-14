@@ -39,6 +39,7 @@ using System.Collections.Generic;
 ///
 /// </remarks>
 [RequireComponent(typeof(Camera))]
+[AddComponentMenu("ChicoPlugins/UI/PanelCam")]
 public class CUIPanelCam : ChaseCam {
 	Dictionary<string, CUIPanel> panels = new Dictionary<string, CUIPanel>();
     

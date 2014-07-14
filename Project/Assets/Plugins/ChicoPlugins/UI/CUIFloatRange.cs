@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("ChicoPlugins/UI/Range/Float")]
 public class CUIFloatRange : CUIRange<float> {	
     protected override float ClampValue(float newValue, float min, float max) {
         return Mathf.Clamp(newValue, min, max);
