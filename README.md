@@ -58,6 +58,11 @@ Our pools focus on components and the scene hierarchy. With a scene hierarchy li
 It's easy to find and recycle those particles:
 
     PoolManager.Get<ParticlePool>("Explosion").GetNextAt(Vector3.zero);
+    
+Or:
+
+    ParticleSystem ps;
+    ParticlePool.TryGetNextAt("Explosion", Vector3.zero, out ps);
 
 * The pool will move a particle system to the requested location.
 * By default, the particles will play immediately.
@@ -72,6 +77,9 @@ Pool structure is managed at runtime, using the scene hierarchy.
 
 <dt>ParticlePool</dt>
 <dd>Pool to manage ParticleSystem components.</dd>
+
+<dt>AudioPool</dt>
+<dd>Pool to manage AudioSource components.</dd>
 
 <dt>TransformPool</dt>
 <dd>Every GameObject has a transform, making this pool extremely versatile.</dd>
