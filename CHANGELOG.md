@@ -1,7 +1,7 @@
 Changelog for ChicoPlugins
 ====
 
-v0.3 (Not Released)
+v0.3 (October 15, 2014)
 ----
 
 * New: ComponentPools now provide static functions TryGetNext, TryGetNextAt, TryAdd (my favorite new feature).
