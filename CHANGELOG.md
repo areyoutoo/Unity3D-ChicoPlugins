@@ -1,6 +1,11 @@
 Changelog for ChicoPlugins
 ====
 
+v0.4 (Not Released)
+----
+
+* Changed: ComponentPool names are now read directly from scene hierarchy.
+
 v0.3 (October 15, 2014)
 ----
 
