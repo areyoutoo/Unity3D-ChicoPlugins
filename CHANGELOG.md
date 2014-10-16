@@ -4,6 +4,7 @@ Changelog for ChicoPlugins
 v0.4 (Not Released)
 ----
 
+* New: "Movers" module. Quick components to make objects spin, bounce, or face targets.
 * Changed: ComponentPool names are now read directly from scene hierarchy.
 
 v0.3 (October 15, 2014)
