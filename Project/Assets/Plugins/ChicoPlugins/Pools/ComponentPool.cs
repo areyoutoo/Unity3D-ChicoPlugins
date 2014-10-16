@@ -202,6 +202,7 @@ public abstract class ComponentPool<T> : ComponentPoolBase where T : UnityEngine
 	
 	protected void OnDestroy() {
 		PoolManager.Remove(id);
+		globalCopiesPending -= copiesPending;
 	}
 	
     /// <summary>
