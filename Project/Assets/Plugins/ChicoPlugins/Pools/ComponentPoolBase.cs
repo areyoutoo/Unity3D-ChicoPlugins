@@ -18,7 +18,6 @@ public abstract class ComponentPoolBase : MonoBehaviour {
     }
     
     protected void Reset() {
-        _id = name;
         copyOnEmpty = true;
         copyOnStart = 0;
         copyRate = 5;
