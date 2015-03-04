@@ -1,6 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// AudioSource pool.
+/// </summary>
+/// <remarks>
+/// Any AudioSource released will be added to an internal watchlist; the list
+/// is periodically checked, and any finished sound will be returned to the
+/// pool.
+///
+/// If activateOnGet is true, the pool will call Play() on any AudioSource it
+/// releases; otherwise, you'll need to do that yourself.
+/// </remarks>
 [AddComponentMenu("ChicoPlugins/Pools/Audio Source")]
 public class AudioPool : ComponentPool<AudioSource> {
 	[SerializeField] float _reclaimRate = 0.5f;
