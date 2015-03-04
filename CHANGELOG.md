@@ -1,7 +1,7 @@
 Changelog for ChicoPlugins
 ====
 
-v0.4 (Not Released)
+v0.4 (March 3, 2015)
 ----
 
 * New: "Movers" module. Quick components to make objects spin, bounce, or face targets.
