@@ -6,6 +6,7 @@
 /// <remarks>
 /// Recommended for use as a placeholder with LevelLoader.
 /// </remarks>
+[AddComponentMenu("ChicoPlugins/Loading/Simple Load UI")]
 public class SimpleLoadUI : MonoBehaviour {
     public Color backgroundColor = Color.black;
     public Color textColor = Color.blue;
