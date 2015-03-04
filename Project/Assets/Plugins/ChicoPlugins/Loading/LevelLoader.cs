@@ -4,6 +4,7 @@ using System.Collections;
 /// <summary>
 /// Switch levels with a loading screen.
 /// </summary>
+[AddComponentMenu("ChicoPlugins/Loading/Level Loader")]
 public class LevelLoader : MonoBehaviour {
     /// <summary>
     /// Global hook for level loading with transition scene.

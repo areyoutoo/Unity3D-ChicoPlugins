@@ -13,3 +13,4 @@
 
 # Ignore project settings folder (for now)
 Project/ProjectSettings
+*.meta

@@ -202,6 +202,7 @@ public abstract class ComponentPool<T> : ComponentPoolBase where T : UnityEngine
 	
 	protected void OnDestroy() {
 		PoolManager.Remove(id);
+		globalCopiesPending -= copiesPending;
 	}
 	
     /// <summary>
@@ -247,4 +248,50 @@ public abstract class ComponentPool<T> : ComponentPoolBase where T : UnityEngine
     /// Note this will NOT be called if the GetNext call is returning null.
     /// </remarks>
 	protected virtual void OnGetNext(T item) {}
+
+	/// <summary>
+	/// Static equivalent of GetNext.
+	/// </summary>
+	/// <returns>
+	/// True if you got an item; false otherwise (no such pool, pool is empty, etc.)
+	/// </returns>
+    public static bool TryGetNext(string poolName, out T item) {
+        ComponentPool<T> pool = PoolManager.Get(poolName) as ComponentPool<T>;
+        if (pool != null) {
+            item = pool.GetNext();
+        } else {
+            item = null;
+        }
+        return item != null;
+    }
+    
+	/// <summary>
+	/// Static equivalent of GetNextAt.
+	/// </summary>
+	/// <returns>
+	/// True if you got an item; false otherwise (no such pool, pool is empty, etc.)
+	/// </returns>    
+    public static bool TryGetNextAt(string poolName, Vector3 pos, out T item) {
+        ComponentPool<T> pool = PoolManager.Get(poolName) as ComponentPool<T>;
+        if (pool != null) {
+            item = pool.GetNextAt(pos);
+        } else {
+            item = null;
+        }
+        return item != null;    
+    }
+
+	/// <summary>
+	/// Static equivalent of GetNext.
+	/// </summary>
+	/// <returns>
+	/// True if the add succeeded; false otherwise (no such pool, pool is wrong type, etc.)
+	/// </returns>
+    public static bool TryAdd(string poolName, T item) {
+    	ComponentPool<T> pool = PoolManager.Get(poolName) as ComponentPool<T>;
+    	if (pool != null) {
+    		pool.Add(item);
+    	}
+    	return pool != null;
+    }	
 }

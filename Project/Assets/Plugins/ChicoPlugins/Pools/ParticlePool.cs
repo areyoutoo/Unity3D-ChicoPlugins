@@ -14,6 +14,7 @@ using System.Collections.Generic;
 ///
 /// In the current build, this pool does not handle nested emitters.
 /// </remarks>
+[AddComponentMenu("ChicoPlugins/Pools/Particle System")]
 public class ParticlePool : ComponentPool<ParticleSystem> {
 	[SerializeField] float _reclaimRate = 0.5f;
     

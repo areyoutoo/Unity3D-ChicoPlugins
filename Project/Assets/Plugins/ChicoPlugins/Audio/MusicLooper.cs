@@ -7,6 +7,7 @@ using System.Collections;
 /// <remarks>
 /// Still calls onMusicFinished() after re-starting the music.
 /// </remarks>
+[AddComponentMenu("ChicoPlugins/Music/Looper")]
 public class MusicLooper : MusicPlayer {
 	protected override void MusicFinished() {
 		music.Play();
