@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Simple movement: bounces an object up and down.
+/// </summary>
+[AddComponentMenu("ChicoPlugins/Movers/Bouncer")]
 public class Bouncer : MonoBehaviour {
 
 	Vector3 origin;
