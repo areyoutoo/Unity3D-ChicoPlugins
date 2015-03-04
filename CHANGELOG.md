@@ -5,7 +5,11 @@ v0.4 (Not Released)
 ----
 
 * New: "Movers" module. Quick components to make objects spin, bounce, or face targets.
+* New: "MouseManager" class. Helpful for tracking simple mouse and touch input over multiple frames.
 * Changed: ComponentPool names are now read directly from scene hierarchy.
+* Removed: CUI module.
+* Improved documentation for several classes.
+
 
 v0.3 (October 15, 2014)
 ----
