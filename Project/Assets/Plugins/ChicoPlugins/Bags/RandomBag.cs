@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 /// <summary>
-/// Bag returns items in random order.
+/// Bag returns items at random, like a fair dice roll.
 /// </summary>
 public class RandomBag<T> : SimpleBag<T> {
 	protected List<T> members;

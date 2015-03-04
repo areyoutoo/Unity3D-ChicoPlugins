@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 /// <summary>
-/// Bag returns item with weighted randomness. Items are NOT removed.
+/// Bag returns items at random with weights, like a biased dice roll.
 /// </summary>
 public class WeightedBag<T> : AbstractBag<T> {
 	const float DEFAULT_WEIGHT = 1f;

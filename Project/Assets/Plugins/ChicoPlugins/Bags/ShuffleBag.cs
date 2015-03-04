@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 
 /// <summary>
-/// Bag returns item in random order. Will not repeat until bag is "emptied" and "refilled".
-///
+/// Bag returns items at random, like a deck of cards.
 /// </summary>
+/// <remarks>
+/// Note that the big will automatically refill itself once emptied.
+/// </remarks>
 public class ShuffleBag<T> : RandomBag<T> {
 	/// <summary>
 	/// An internal list, used by Refill().
